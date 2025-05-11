@@ -215,10 +215,10 @@ For production deployment, follow the [Azure Bot Service deployment guide](https
 
 ## Additional Resources
 
-- [Azure AI Agent Service Documentation](https://learn.microsoft.com/en-us/azure/ai-services/agents/)
+- [Azure AI Agent Service Documentation](https://learn.microsoft.com/en-us/azure/ai-services/agents/
 - [Microsoft Bot Framework Documentation](https://learn.microsoft.com/en-us/azure/bot-service/)
 - [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases/tag/v4.15.1)
-- [Model Context Protocol Specification](https://github.com/microsoft/model-context-protocol)
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/introduction)
 - [Azure Blob Storage Documentation](https://learn.microsoft.com/en-us/azure/storage/blobs/)
 
 ## Contributing
