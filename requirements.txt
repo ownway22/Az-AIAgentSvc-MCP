@@ -1,0 +1,12 @@
+openai
+botbuilder-integration-aiohttp>=4.14.0
+pillow
+azure-ai-projects
+azure-identity
+python-dotenv
+jsonref
+opencensus-ext-azure
+mcp>=1.7.1
+httpx>=0.24.0
+nest_asyncio>=1.5.6
+azure-keyvault-secrets
