@@ -99,7 +99,7 @@ The integration is loosely coupled - the Agent only knows about the tool signatu
 ### MCP Server Setup
 
 This project requires an MCP Server that implements Azure Blob Storage operations. The MCP Server itself is not part of this project, but you can find an implementation at:
-[Azure-Samples/mcp-azure-storage](https://github.com/Azure-Samples/mcp-azure-storage)
+[Azure-Samples/mcp-azure-storage](https://github.com/MSFT-Innovation-Hub-India/MCP-Az-storage-Svc-Sample)
 
 ### Installation Steps
 
@@ -204,10 +204,12 @@ Key benefits of this approach:
 
 ## Deployment Options
 
-This application can be deployed using various Azure services:
+This Bot Framework Application can be deployed using various Azure services:
 - Azure App Service
 - Azure Container Apps
 - Azure Functions
+
+For convenience, it is tested locally using the [Microsoft Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases/tag/v4.15.1)
 
 For production deployment, follow the [Azure Bot Service deployment guide](https://learn.microsoft.com/en-us/azure/bot-service/bot-builder-deploy-az-cli).
 
