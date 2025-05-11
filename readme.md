@@ -213,6 +213,16 @@ For convenience, it is tested locally using the [Microsoft Bot Framework Emulato
 
 For production deployment, follow the [Azure Bot Service deployment guide](https://learn.microsoft.com/en-us/azure/bot-service/bot-builder-deploy-az-cli).
 
+
+
+
+## Demo Video
+
+[![Model Context Protocol with Azure AI Agent Service Demo](https://img.youtube.com/vi/XXLw4tHFlHI/maxresdefault.jpg)](https://youtu.be/XXLw4tHFlHI)
+
+*Click the image above to watch the demonstration video on YouTube*
+
+
 ## Additional Resources
 
 - [Azure AI Agent Service Documentation](https://learn.microsoft.com/en-us/azure/ai-services/agents/

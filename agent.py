@@ -1,10 +1,6 @@
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import (
-    FunctionTool,
-    ToolSet,
-    BingGroundingTool
-)
+from azure.ai.projects.models import FunctionTool, ToolSet, BingGroundingTool
 import traceback
 import config
 import asyncio
@@ -13,9 +9,7 @@ from dotenv import set_key
 import os
 from akv_client import get_secret_from_key_vault
 
-az_application_insights_key = get_secret_from_key_vault(
-    "ta-buddy-app-insights-key"
-)
+az_application_insights_key = get_secret_from_key_vault("ta-buddy-app-insights-key")
 config.az_application_insights_key = az_application_insights_key
 
 
@@ -65,28 +59,25 @@ def create_agent():
 
     mcp_function_tool = FunctionTool(functions=list(functions_dict.values()))
 
-
-
     project_client = AIProjectClient.from_connection_string(
         credential=DefaultAzureCredential(),
         conn_str=config.az_agentic_ai_service_connection_string,
     )
-    
+
     bing_connection = project_client.connections.get(
         connection_name=bing_connection_name
     )
     conn_id = bing_connection.id
     print(conn_id)
-    
+
     # Initialize agent bing tool and add the connection id
     bing = BingGroundingTool(connection_id=conn_id)
 
     toolset = ToolSet()
     toolset.add(mcp_function_tool)
     toolset.add(bing)
-    
-    
-    agent_instructions="""You are an AI Assistant tasked with helping users create news capsules of topics they ask for and store them for consumption. 
+
+    agent_instructions = """You are an AI Assistant tasked with helping users create news capsules of topics they ask for and store them for consumption. 
         
 You have access to the following tools that you should use whenever appropriate:
 1. Bing Search APIs to obtain the latest news on various topics
@@ -107,11 +98,14 @@ When a user asks about containers or blobs in storage, ALWAYS use the appropriat
         # You will update the agent when the MCP Server implements additional tools, resources, or features.
         project_client.agents.update_agent(
             model=config.aoai_model_name,
-        name=agent_name,
-        instructions=agent_instructions,
-        tools=toolset.definitions,
-        agent_id=agent_id,
-        # headers={"x-ms-enable-preview": "true"}
+            name=agent_name,
+            instructions=agent_instructions,
+            description="""An AI Assistant that helps users use Bing to get the latest on different topics and integrate with an 
+        MCP Server to store and catalog this information in Azure Blob Storage
+        """,
+            tools=toolset.definitions,
+            agent_id=agent_id,
+            # headers={"x-ms-enable-preview": "true"}
         )
         print("updated agent with id ", agent.id)
     except Exception as e:

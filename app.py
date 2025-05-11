@@ -34,14 +34,6 @@ from bots.state_management_bot import StateManagementBot
 import logging
 from logging_config import configure_logging
 
-# Import the upload blob diagnostics
-try:
-    from logs.upload_blob_diagnostics import log_upload_blob_operation, monitor_upload_blob
-    # This will patch the execute_mcp_tool_directly function with extra diagnostics
-    print("Upload blob diagnostics enabled")
-except ImportError as e:
-    print(f"Upload blob diagnostics not available: {e}")
-
 # Configure logging before any Azure SDK clients are initialized
 # This will set up all loggers to use Azure Application Insights
 configure_logging()
@@ -56,10 +48,6 @@ CONVERSATION_STATE = ConversationState(MEMORY)
 
 # Create the Bot
 BOT = StateManagementBot(CONVERSATION_STATE, USER_STATE)
-
-# Configure static files
-STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
-
 
 # Get logger for this module - already configured by configure_logging()
 logger = logging.getLogger(__name__)
@@ -118,14 +106,9 @@ async def messages(req: Request) -> Response:
     return Response(status=201)
 
 
-# Serve static files
-async def index(req: Request) -> web.FileResponse:
-    return web.FileResponse(os.path.join(STATIC_DIR, "index.html"))
 
 APP = web.Application(middlewares=[aiohttp_error_middleware])
 APP.router.add_post("/api/messages", messages)
-APP.router.add_get("/", index)
-APP.router.add_static("/static", STATIC_DIR)
 
 if __name__ == "__main__":
     port = config.PORT
