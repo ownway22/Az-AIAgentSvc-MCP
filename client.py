@@ -234,19 +234,6 @@ class ServerConnection:
         if not any(tool["name"] == tool_name for tool in tools):
             raise ValueError(f"Tool '{tool_name}' not found on MCP server")
 
-        # Special handling for upload_blob to ensure content is provided
-        if tool_name == "upload_blob" and "content" not in arguments:
-            logger.warning(
-                "upload_blob missing required 'content' parameter in client execution"
-            )
-            if "text" in arguments:
-                # If 'text' is provided but not 'content', use text as content
-                logger.info("Using 'text' field as 'content' for upload_blob")
-                arguments["content"] = arguments["text"]
-            elif "value" in arguments:
-                # If 'value' is provided but not 'content', use value as content
-                logger.info("Using 'value' field as 'content' for upload_blob")
-                arguments["content"] = arguments["value"]
 
         # Implement retry with exponential backoff
         attempt = 0

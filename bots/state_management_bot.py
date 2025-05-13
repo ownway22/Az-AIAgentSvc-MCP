@@ -190,17 +190,6 @@ class StateManagementBot(ActivityHandler):
                                         # Direct MCP execution using our specialized handler
                                         logger.info(f"Using direct MCP handler for storage function: {function_name}")
                                         
-                                        # Special handling for upload_blob to ensure content is provided
-                                        if function_name == "upload_blob" and "content" not in arguments:
-                                            logger.warning("upload_blob missing required 'content' parameter")
-                                            if "text" in arguments:
-                                                # If 'text' is provided but not 'content', use text as content
-                                                logger.info("Using 'text' field as 'content' for upload_blob")
-                                                arguments["content"] = arguments["text"]
-                                            elif "value" in arguments:
-                                                # If 'value' is provided but not 'content', use value as content
-                                                logger.info("Using 'value' field as 'content' for upload_blob")
-                                                arguments["content"] = arguments["value"]
                                             
                                         # Use the specialized MCP executor that bypasses the Python callable
                                         try:
