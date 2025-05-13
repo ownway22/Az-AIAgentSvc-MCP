@@ -17,6 +17,9 @@ The News Compiler AI Agent demonstrates how an Azure AI Agent Service agent can 
 
 The application follows a modular architecture that leverages Azure services along with the Model Context Protocol (MCP) to create a loosely coupled system.
 
+![alt text](images/mcp-arch-img.png)
+
+
 ### Components
 
 1. **Azure AI Agent Service Agent**:
